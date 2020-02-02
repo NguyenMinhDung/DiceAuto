@@ -2,7 +2,7 @@ Func Click($title, $x, $y, $times = 1, $speed = 0)
 	If $times <> 1 Then
 		For $i = 0 To ($times - 1)
 			ControlClick($title, "", "", "left", "1", $x, $y)
-			If Sleep($speed) Then ExitLoop
+			Sleep($speed)
 		Next
 	Else
 		ControlClick($title, "", "", "left", "1", $x, $y)

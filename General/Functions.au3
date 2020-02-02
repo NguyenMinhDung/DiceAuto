@@ -1,1 +1,0 @@
-#include "Other\Click.au3"

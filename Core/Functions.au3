@@ -1,0 +1,6 @@
+#include "Other\Click.au3"
+#include "Other\AdbCommand.au3"
+#include "ImageSearch\ImageSearch.au3"
+#include "Other\CoordinateConverter.au3"
+#include "Other\ClickOnImage.au3"
+#include "Other\GetPixelColor.au3"

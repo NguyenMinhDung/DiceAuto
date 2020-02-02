@@ -2,17 +2,19 @@
 #include <WinAPI.au3>       ; for _WinAPI_GetSystemMetrics
 #include <WinAPIFiles.au3>  ; for _WinAPI_Wow64EnableWow64FsRedirection
 
+Local $DLL_FOLDER = "Core\ImageSearch\dll\"
+
 ; Make sure the DLL path exists, FileInstall doesn't create folders
-If Not FileExists("ImageSearch\dll\") Then DirCreate("ImageSearch\dll\")
+If Not FileExists($DLL_FOLDER) Then DirCreate($DLL_FOLDER)
 
 ; This script's functionality depends on these DLLs being present in the script's path
 #Region Required DLLs
-If Not FileExists("ImageSearch\dll\ImageSearchDLLx32.dll") Then FileInstall("ImageSearch\dll\ImageSearchDLLx32.dll", "ImageSearch\dll\ImageSearchDLLx32.dll")
-If Not FileExists("ImageSearch\dll\ImageSearchDLLx64.dll") Then FileInstall("ImageSearch\dll\ImageSearchDLLx64.dll", "ImageSearch\dll\ImageSearchDLLx64.dll")
+If Not FileExists($DLL_FOLDER & "ImageSearchDLLx32.dll") Then FileInstall($DLL_FOLDER & "ImageSearchDLLx32.dll", $DLL_FOLDER & "ImageSearchDLLx32.dll")
+If Not FileExists($DLL_FOLDER & "ImageSearchDLLx64.dll") Then FileInstall($DLL_FOLDER & "ImageSearchDLLx64.dll", $DLL_FOLDER & "ImageSearchDLLx64.dll")
 ; Microsoft Visual C++ Redistributable x32
-If Not FileExists("ImageSearch\dll\msvcr110.dll") Then FileInstall("ImageSearch\dll\msvcr110.dll", "ImageSearch\dll\msvcr110.dll")
+If Not FileExists($DLL_FOLDER & "msvcr110.dll") Then FileInstall($DLL_FOLDER & "msvcr110.dll", $DLL_FOLDER & "msvcr110.dll")
 ; Microsoft Visual C++ Redistributable x64
-If Not FileExists("ImageSearch\dll\msvcr110d.dll") Then FileInstall("ImageSearch\dll\msvcr110d.dll", "ImageSearch\dll\msvcr110d.dll")
+If Not FileExists($DLL_FOLDER & "msvcr110d.dll") Then FileInstall($DLL_FOLDER & "msvcr110d.dll", $DLL_FOLDER & "msvcr110d.dll")
 #EndRegion
 
 ; When working with multiple monitors, we need to determine absolute desktop dimensions manually, so we can escape the boundaries of the primary monitor
@@ -35,11 +37,11 @@ Func _ImageSearchStartup()
     ; @AutoItX64 - Returns 1 if the script is running under the native x64 version of AutoIt
     If @OSArch = "X86" Or @AutoItX64 = 0 Then
         cr("@OSArch=" & @OSArch & " | " & "@AutoItX64=" & @AutoItX64 & " | " & "Using x32 ImageSearch DLL")
-        $hImageSearchDLL = DllOpen("ImageSearch\dll\ImageSearchDLLx32.dll")
+        $hImageSearchDLL = DllOpen($DLL_FOLDER & "ImageSearchDLLx32.dll")
         If $hImageSearchDLL = -1 Then Return "DllOpen Error: " & @error
     ElseIf @OSArch = "X64" And @AutoItX64 = 1 Then
         cr("@OSArch=" & @OSArch & " | " & "@AutoItX64=" & @AutoItX64 & " | " & "Using x64 ImageSearch DLL")
-        $hImageSearchDLL = DllOpen("ImageSearch\dll\ImageSearchDLLx64.dll")
+        $hImageSearchDLL = DllOpen($DLL_FOLDER & "ImageSearchDLLx64.dll")
         If $hImageSearchDLL = -1 Then Return "DllOpen Error: " & @error
     Else
         Return "Inconsistent or incompatible Script/Windows/CPU Architecture"
@@ -198,6 +200,7 @@ EndFunc ; _WaitForImageSearch
 Func _WaitForImagesSearch($findImage, $waitSecs, $resultPosition, $tolerance = 0, $transparency = 0, $hWindow = 0)
     $waitSecs = $waitSecs * 1000
     Local $startTime = TimerInit()
+    cr("xxx")
     While TimerDiff($startTime) < $waitSecs
         For $i = 1 To $findImage[0]
             Sleep(100)
