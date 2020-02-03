@@ -62,7 +62,9 @@ Func gameLoop()
 
         checkBattleScreen()
 
-        autoPlayGame()
+		autoPlayGame()
+		
+		checkDisconnect()
 	WEnd
 EndFunc   ;==>gameLoop
 

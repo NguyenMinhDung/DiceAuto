@@ -6,3 +6,4 @@
 #include "Functions\startNewGame.au3"
 #include "Functions\autoPlayGame.au3"
 #include "Functions\waitForAds.au3"
+#include "Functions\checkDisconnect.au3"

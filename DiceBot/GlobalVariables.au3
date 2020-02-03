@@ -26,6 +26,7 @@ Global $IMG_ADS = "Images\ads.png"
 Global $IMG_PVE = "Images\pve.png"
 Global $IMG_QUICK_MATCH = "Images\quick_match.png"
 Global $IMG_NEW_DICE = "Images\new_dice.png"
+Global $IMG_DISCONNECT = "Images\disconnect.png"
 
 #include <WindowsConstants.au3>
 #include <GUIConstantsEx.au3>
