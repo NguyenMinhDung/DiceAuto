@@ -4,7 +4,9 @@ Func checkDisconnect()
         Local $result = _WaitForImageSearch($IMG_DISCONNECT, 3, 1)
 
         If IsArray($result) Then
-            Click($Title, $result[0], $result[1])
+            $GameState = 0
+
+            RestartApk("com.percent.royaldice")
         EndIf
     EndIf
 EndFunc
