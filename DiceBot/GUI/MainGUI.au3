@@ -31,6 +31,8 @@ Func btnStart_Click()
 	$IsRunning = True
 	$IsPause = False
 
+	GUICtrlSetState($btnStart, $GUI_DISABLE)
+
 	GUICtrlSetData($btnPause, "Pause")
 EndFunc   ;==>btnStart_Click
 
@@ -48,6 +50,8 @@ EndFunc   ;==>btnPause_Click
 
 Func gameLoop()
 	While Not $IsPause
+		checkTimeout(60)
+
 		checkMainScreen()
 		
 		checkAds()

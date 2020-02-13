@@ -1,8 +1,11 @@
-HotKeySet("c", "CapturePosition")
+HotKeySet("{F1}", "CapturePosition")
 
 Func autoPlayGame()
 	If $GameState == $BATTLE_SCREEN Then
 		cr("Adding new dice (x=" & $NewDicePos[0] & ",y=" & $NewDicePos[1] & ")")
+
+		ResetStartTime()
+
 		Click($Title, $NewDicePos[0], $NewDicePos[1], 4, 500)
 
 		$NewDiceCount = $NewDiceCount + 1

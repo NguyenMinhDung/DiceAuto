@@ -3,6 +3,8 @@ Func startNewGame()
 		Local $result = enterAlliMode()
 
 		If $result Then
+			ResetStartTime()
+
 			$GameState = $ALLI_MODE_POPUP
 		EndIf
 	EndIf

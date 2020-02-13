@@ -4,6 +4,8 @@ Func checkMainScreen()
     If IsArray($result) Then
         cr("Screen: Main")
 
+        ResetStartTime()
+
         $GameState = $MAIN_SCREEN
 	EndIf
 EndFunc

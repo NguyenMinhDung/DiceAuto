@@ -3,11 +3,14 @@ Func checkQuickMatch()
 
     If $GameState == 0 Or $GameState == $ALLI_MODE_POPUP Then
         cr("Checking quick match popup...")
+
         Local $result = ClickOnImage($IMG_QUICK_MATCH, 4, $HWnD)
 
         If $result Then
             $GameState = $GAME_STARTED
             cr("Starting game...")
+
+            ResetStartTime()
         Else
             $GameState = 0
         EndIf

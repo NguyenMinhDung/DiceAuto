@@ -5,6 +5,9 @@ Func checkBattleScreen()
 
         If IsArray($NewDicePos) Then
             cr("Screen: Battle ")
+
+            ResetStartTime()
+
             $NewDicePos = ScreenToClient($NewDicePos[0], $NewDicePos[1], $HWnD)
             $GameState = $BATTLE_SCREEN
         EndIf

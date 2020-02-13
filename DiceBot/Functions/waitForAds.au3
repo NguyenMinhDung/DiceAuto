@@ -7,6 +7,9 @@ Func waitForAds($timeout)
 		WinWaitActive($Title,"", 2)
 
 		While ($isMainScreen == False And $time <= $timeout)
+			
+			ResetStartTime()
+
 			Send("{ESC}")
 
 			Sleep(200)

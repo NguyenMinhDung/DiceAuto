@@ -9,9 +9,12 @@ Func viewAds()
         Local $mainScreen = _WaitForImageSearch($IMG_MAIN_SCREEN, 5, 1)
 
         If $result And Not IsArray($mainScreen) Then
+            
+            ResetStartTime()
+
             $GameState = $VIEWING_AD
         Else
-            $GameState = $RESTART
+            $GameState = 0
 
             RestartApk("com.percent.royaldice")
         EndIf

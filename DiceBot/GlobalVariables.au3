@@ -13,12 +13,21 @@ Global $IsPause = False
 Global $GameState = 0
 Enum $MAIN_SCREEN = 1, $ADS_SCREEN, $VIEWING_AD, $ALLI_MODE_POPUP, $GAME_STARTED, $BATTLE_SCREEN, $RESTART
 
+Global $ConfigFile = @ScriptDir & "\config.ini"
+
 Global $NewDicePos
 Global $CurUpgradeDice = 1
 Global $NewDiceCount = 0
 
-Global $slot1, $slot2, $slot3, $slot4, $slot5
+Global $slot1[2] = [100, 921]
+Global $slot2[2] = [190, 921]
+Global $slot3[2] = [280, 921]
+Global $slot4[2] = [370, 921]
+Global $slot5[2] = [460, 921]
+
 Global $slot = 1
+
+Global $StartTime = TimerInit()
 
 ; Images
 Global $IMG_MAIN_SCREEN = "Images\main_screen.png"
@@ -32,3 +41,7 @@ Global $IMG_DISCONNECT = "Images\disconnect.png"
 #include <GUIConstantsEx.au3>
 #include <Array.au3>
 #include <ScreenCapture.au3>
+
+Func ResetStartTime()
+    $StartTime = TimerInit()
+EndFunc

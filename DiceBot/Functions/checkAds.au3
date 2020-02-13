@@ -5,6 +5,8 @@ Func checkAds()
         If IsArray($result) Then
             cr("Ads is found")
 
+            ResetStartTime()
+
             $GameState = $ADS_SCREEN
         EndIf
     EndIf
