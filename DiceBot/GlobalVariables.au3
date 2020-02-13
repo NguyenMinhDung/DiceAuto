@@ -10,6 +10,7 @@ Global $ApkPackage = "com.percent.royaldice"
 Global $IsRunning = False
 Global $IsPause = False
 
+Global $AppRestart = False
 Global $GameState = 0
 Enum $MAIN_SCREEN = 1, $ADS_SCREEN, $VIEWING_AD, $ALLI_MODE_POPUP, $GAME_STARTED, $BATTLE_SCREEN, $RESTART
 
@@ -44,4 +45,5 @@ Global $IMG_DISCONNECT = "Images\disconnect.png"
 
 Func ResetStartTime()
     $StartTime = TimerInit()
+    $AppRestart = False
 EndFunc

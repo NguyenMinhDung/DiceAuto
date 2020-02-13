@@ -50,8 +50,6 @@ EndFunc   ;==>btnPause_Click
 
 Func gameLoop()
 	While Not $IsPause
-		checkTimeout(60)
-
 		checkMainScreen()
 		
 		checkAds()
@@ -69,6 +67,8 @@ Func gameLoop()
 		autoPlayGame()
 		
 		checkDisconnect()
+
+		checkTimeout(90)
 	WEnd
 EndFunc   ;==>gameLoop
 

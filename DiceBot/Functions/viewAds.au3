@@ -14,7 +14,8 @@ Func viewAds()
 
             $GameState = $VIEWING_AD
         Else
-            $GameState = 0
+            $GameState = $RESTART
+            $AppRestart = True
 
             RestartApk("com.percent.royaldice")
         EndIf
