@@ -10,7 +10,7 @@ Func waitForAds($timeout)
 			
 			ResetStartTime()
 
-			Send("{ESC}")
+			ControlSend($Title, "", "", "{ESC}")
 
 			Sleep(200)
 
