@@ -7,7 +7,7 @@ $sBotTitle = "AutoIt DiceBot v" & $sBotVersion
 
 AdbCommand("nox_adb.exe connect 127.0.0.1:62001")
 
-$frmMain = GUICreate("Auto Dice v3.2.0", 194, 57, 192, 124)
+$frmMain = GUICreate("Auto Dice v3.2.0", 194, 57, 192, 124, Default, $WS_EX_TOPMOST)
 GUISetOnEvent($GUI_EVENT_CLOSE, "WinExit")
 
 $btnStart = GUICtrlCreateButton("Start", 16, 16, 75, 25)
@@ -15,6 +15,8 @@ GUICtrlSetOnEvent($btnStart, "btnStart_Click")
 
 $btnPause = GUICtrlCreateButton("Pause", 104, 16, 75, 25)
 GUICtrlSetOnEvent($btnPause, "btnPause_Click")
+
+GUISetOnEvent($GUI_EVENT_MOUSEMOVE, "showCurrentMousePosition")
 
 GUISetState(@SW_SHOW)
 
@@ -25,11 +27,16 @@ While 1
 	EndIf
 WEnd
 
-_GDIPlus_Shutdown()
+Func showCurrentMousePosition()
+	Local $pos = MouseGetPos()
+	ToolTip ("x: " & $pos[0] & ", y: " & $pos[1], 10, 10)
+EndFunc
 
 Func btnStart_Click()
 	$IsRunning = True
 	$IsPause = False
+
+	HidePointer(True)
 
 	GUICtrlSetState($btnStart, $GUI_DISABLE)
 
@@ -73,5 +80,7 @@ Func gameLoop()
 EndFunc   ;==>gameLoop
 
 Func WinExit()
+	HidePointer(False)
+	_GDIPlus_Shutdown()
 	Exit
 EndFunc   ;==>WinExit

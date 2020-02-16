@@ -30,13 +30,11 @@ Func CaptureWindow($hWnd, $w, $h)
 EndFunc   ;==>Capture_Window
 
 Func GetPixelColor($iX, $iY, $hBitmap)
-	Local $aPixelColor = _GDIPlus_BitmapGetPixel($hBitmap, $iX, $iY)
+    Local $aPixelColor = _GDIPlus_BitmapGetPixel($hBitmap, $iX, $iY)
 	Return Hex($aPixelColor, 6)
 EndFunc   ;==>_GetPixelColor
 
 Func WinGetPixelColor($iX, $iY, $hWindow)
-    cr("x="&$iX&",y=" & $iY)
-
     Local $aPos = WinGetPos($hWindow)
 
     Local $hHBitmap = _ScreenCapture_Capture("", $aPos[0], $aPos[1], $aPos[0] + $aPos[2], $aPos[1] + $aPos[3])

@@ -1,3 +1,6 @@
+#include "Core\CaptureRegion.au3"
+
+#include "Functions\autoMergeDice.au3"
 #include "Functions\checkMainScreen.au3"
 #include "Functions\checkBattleScreen.au3"
 #include "Functions\checkQuickMatch.au3"
@@ -8,3 +11,5 @@
 #include "Functions\waitForAds.au3"
 #include "Functions\checkDisconnect.au3"
 #include "Functions\checkTimeout.au3"
+#include "Functions\openGiftCard.au3"
+#include "Functions\capturePosition.au3"

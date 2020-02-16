@@ -6,6 +6,10 @@
 ;--------------------------------------------------------------------------------------------------------------
 
 Func ColorCheck($nColor1, $nColor2, $sVari = 5)
+	If IsStringNullOrEmpty($nColor1) Or IsStringNullOrEmpty($nColor2) Then
+		Return False
+	EndIf
+
 	Local $Red1, $Red2, $Blue1, $Blue2, $Green1, $Green2
 
 	$Red1 = Dec(StringMid(String($nColor1), 1, 2))
@@ -22,8 +26,16 @@ Func ColorCheck($nColor1, $nColor2, $sVari = 5)
 	Return True
 EndFunc   ;==>_ColorCheck
 
+Func IsStringNullOrEmpty($str)
+    If $str == Null Or $str == "" Then 
+        Return True 
+    Else
+        Return False
+    EndIf
+EndFunc
+
 ; CheckPixel : takes an array[4] as a parameter, [x, y, color, tolerance]
-Func CheckPixel($tab)
-	If ColorCheck(GetPixelColor($tab[0], $tab[1]), Hex($tab[2], 6), $tab[3]) Then Return True
-	Return False;
-EndFunc   ;==>CheckPixel
+;Func CheckPixel($tab)
+;	If ColorCheck(GetPixelColor($tab[0], $tab[1]), Hex($tab[2], 6), $tab[3]) Then Return True
+;	Return False;
+;EndFunc   ;==>CheckPixel

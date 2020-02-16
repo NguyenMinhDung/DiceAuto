@@ -12,3 +12,14 @@ Func ScreenToClient($x, $y, $hWnd)
     
     Return $rPoint
 EndFunc
+
+Func ClientToScreen($x, $y, $hWnd)
+    Local $tpoint = DllStructCreate("int X;int Y")
+	DllStructSetData($tpoint, "X", $x)
+	DllStructSetData($tpoint, "Y", $y)
+    _WinAPI_ClientToScreen($hWnd, $tpoint)
+
+    Dim $rPoint[2] = [DllStructGetData($tpoint, "X"), DllStructGetData($tpoint, "Y")]
+    
+    Return $rPoint
+EndFunc

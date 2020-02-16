@@ -4,3 +4,5 @@
 #include "Other\CoordinateConverter.au3"
 #include "Other\ClickOnImage.au3"
 #include "Other\GetPixelColor.au3"
+#include "Other\ColorCheck.au3"
+#include "Other\HideCursor.au3"

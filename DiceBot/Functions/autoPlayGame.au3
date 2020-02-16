@@ -1,5 +1,7 @@
 HotKeySet("{F1}", "CapturePosition")
 HotKeySet("{F2}", "OpenGiftCard")
+HotKeySet("{F3}", "GetColorFromMouse")
+
 
 Func autoPlayGame()
 	If $GameState == $BATTLE_SCREEN Then
@@ -14,39 +16,30 @@ Func autoPlayGame()
 		If $NewDiceCount > 5 Then
 			UpgradeDice()
 		EndIf
+
+		Local $NumCellEmpty = ScanDice()
+
+		FindPair()
+
+		cr($NumCellEmpty & " " & $Pair[0][3])
+
+		If $NumCellEmpty <= 2 Or $Pair[0][3] == 1 Then
+			For $i = 0 To 5
+				ConsoleWrite($DiceMatrix[$Pair[0][0]][$i] & " | ")
+			Next
+
+			cr()
+	
+			For $i = 0 To 5
+				ConsoleWrite($DiceMatrix[$Pair[0][1]][$i] & " | ")
+			Next
+
+			cr()
+
+			MergeDice($Pair[0][0], $Pair[0][1])
+		EndIf
 	EndIf
 EndFunc   ;==>autoPlayGame
-
-Func CapturePosition()
-	cr("Update position slot " & $slot)
-
-	Local $mousePos = MouseGetPos()
-
-	$mousePos = ScreenToClient($mousePos[0], $mousePos[1], $HWnD)
-
-	If $slot == 1 Then
-		$slot1 = $mousePos
-		$slot = 2
-		cr("Slot 1: " & $slot1[0] & "," & $slot1[1])
-	ElseIf $slot == 2 Then
-		$slot2 = $mousePos
-		$slot = 3
-		cr("Slot 2: " & $slot2[0] & "," & $slot2[1])
-	ElseIf $slot == 3 Then
-		$slot3 = $mousePos
-		$slot = 4
-		cr("Slot 3: " & $slot3[0] & "," & $slot3[1])
-	ElseIf $slot == 4 Then
-		$slot4 = $mousePos
-		$slot = 5
-		cr("Slot 4: " & $slot4[0] & "," & $slot4[1])
-	Else
-		$slot5 = $mousePos
-		$slot = 1
-		cr("Slot 5: " & $slot5[0] & "," & $slot5[1])
-	EndIf
-
-EndFunc   ;==>CapturePosition
 
 Func UpgradeDice()
 	cr("Upgrate slot " & $curUpgradeDice)
@@ -75,25 +68,43 @@ Func UpgradeDice()
 	EndIf
 EndFunc   ;==>UpgradeDice
 
-Func OpenGiftCard()
-	Local $NoCard = False
-	While (Not $NoCard)
-		OpenCardStepByPos(404, 184, 200)
-		OpenCardStepByPos(286, 743, 200)
-		OpenCardStepByPos(268, 497, 1000)
-		OpenCardStepByPos(273, 743, 100)
-		OpenCardStepByPos(273, 786, 100)
-
-		$NoCard = ClickOnImage("Images\emptycard.png", 1, $HWnD)
-
-		If $NoCard Then
-			cr("Not enough cards!")
-		EndIf
-	WEnd
+Func DetectColor()
+	
+	cr(WinGetPixelColor(149,557, $HWnD))
+	cr(WinGetPixelColor(438,236, $HWnD))
+	cr(WinGetPixelColor(97,616, $HWnD))
+	cr(WinGetPixelColor(278,615, $HWnD))
+	cr(WinGetPixelColor(457,615, $HWnD))
 EndFunc
 
-Func OpenCardStepByPos($x, $y, $delay)
-	Click($hwnd, $x, $y)
+Func CustomMouseMove()
+	Local $mousePos = MouseGetPos()
+	cr("Slot 1: " & $mousePos[0] & "," & $mousePos[1])
 
-	Sleep($delay)
+	;MouseClickDrag("left", 1519,619, 1712,621)
+	;ControlMouseDrag($HWnD, 150,558, 150,621)
+EndFunc
+
+Func GetColorFromMouse()
+
+	HidePointer(True)
+
+	CaptureRegion()
+
+	Local $mousePos = MouseGetPos()
+
+	cr("mousePos: " & $mousePos[0] & "," & $mousePos[1])
+
+	$mousePos = ScreenToClient($mousePos[0], $mousePos[1], $HWnD)
+
+	ConsoleWrite(GetPixelColor($mousePos[0], $mousePos[1], $HBitmap) & @CRLF)
+	
+	HidePointer(False)
+EndFunc
+
+Func ControlMouseDrag($hWindow, $x1, $y1, $x2, $y2)
+    _SendMessage($hWindow, $WM_MOUSEMOVE,   0, _WinAPI_MakeLong($x1, $y1))
+    _SendMessage($hWindow, $WM_LBUTTONDOWN, 1, _WinAPI_MakeLong($x1, $y1))
+    _SendMessage($hWindow, $WM_MOUSEMOVE,   1, _WinAPI_MakeLong($x2, $y2))
+    _SendMessage($hWindow, $WM_LBUTTONUP,   0, _WinAPI_MakeLong($x2, $y2))
 EndFunc
