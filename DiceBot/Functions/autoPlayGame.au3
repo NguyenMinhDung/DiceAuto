@@ -110,6 +110,8 @@ Func GetColorFromMouse()
 
 	$mousePos = ScreenToClient($mousePos[0], $mousePos[1], $HWnD)
 
+	cr("mousePos: " & $mousePos[0] & "," & $mousePos[1])
+
 	ConsoleWrite(GetPixelColor($mousePos[0], $mousePos[1], $HBitmap) & @CRLF)
 
 	HidePointer(False)
