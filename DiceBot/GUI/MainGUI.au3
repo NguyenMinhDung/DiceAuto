@@ -56,7 +56,7 @@ Func gameLoop()
 
 		viewAds()
 		
-		waitForAds(50)
+		waitForAds(60)
 
         startNewGame()
 

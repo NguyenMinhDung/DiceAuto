@@ -2,11 +2,21 @@ Func waitForAds($timeout)
 	If $GameState == $VIEWING_AD Then
 		Local $isMainScreen = False
 		Local $time = 0
-		
-		WinActivate($Title,"")
-		WinWaitActive($Title,"", 2)
+		Local $count = 0
 
-		While ($isMainScreen == False And $time <= $timeout)
+		WinActivate($Title)
+		WinWaitActive($Title, "", 5)
+
+		While ($isMainScreen == False)
+
+			If $time > $timeout Then
+				$GameState = $RESTART
+				$AppRestart = True
+
+				RestartApk("com.percent.royaldice")
+				
+				ExitLoop
+			EndIf
 			
 			ResetStartTime()
 
@@ -14,9 +24,21 @@ Func waitForAds($timeout)
 
 			Sleep(200)
 
+			Local $result = ClickOnImage("Images\resume.png", 5, $HWnD)
+
+			If $result Then
+				$count = $count + 1
+			EndIf
+
+			If $count >= 5 Then
+				ClickOnImage("Images\close.png", 5, $HWnD)
+			EndIf
+
 			cr("Checking ads is watched...")
 
-			Local $mainScreen = _WaitForImageSearch($IMG_MAIN_SCREEN, 10, 1)
+			Sleep(200)
+
+			Local $mainScreen = _WaitForImageSearch($IMG_MAIN_SCREEN, 5, 1)
 
 			If IsArray($mainScreen) Then
 				cr("Ads is watched")

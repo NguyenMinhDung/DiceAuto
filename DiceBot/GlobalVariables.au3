@@ -20,11 +20,11 @@ Global $NewDicePos
 Global $CurUpgradeDice = 1
 Global $NewDiceCount = 0
 
-Global $slot1[2] = [100, 921]
-Global $slot2[2] = [190, 921]
-Global $slot3[2] = [280, 921]
-Global $slot4[2] = [370, 921]
-Global $slot5[2] = [460, 921]
+Global $slot1[2] = [70, 641]
+Global $slot2[2] = [70, 641]
+Global $slot3[2] = [190, 641]
+Global $slot4[2] = [250, 641]
+Global $slot5[2] = [310, 641]
 
 Global $slot = 1
 
