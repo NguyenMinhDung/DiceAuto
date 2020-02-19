@@ -1,9 +1,9 @@
 Func OpenGiftCard()
 	Local $NoCard = False
 	While (Not $NoCard)
-		OpenCardStepByPos(404, 184, 200)
-		OpenCardStepByPos(286, 743, 200)
-		OpenCardStepByPos(268, 497, 1000)
+		OpenCardStepByPos(404, 184, 100)
+		OpenCardStepByPos(286, 743, 100)
+		OpenCardStepByPos(268, 497, 100)
 		OpenCardStepByPos(273, 743, 100)
 		OpenCardStepByPos(273, 786, 100)
 

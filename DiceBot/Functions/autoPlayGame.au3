@@ -17,29 +17,42 @@ Func autoPlayGame()
 			UpgradeDice()
 		EndIf
 
+		AutoMerge()
+	EndIf
+EndFunc   ;==>autoPlayGame
+
+Func AutoMerge()
+	cr("Pending: " & $PendingMerge)
+	cr("LimitForMerge: " & $LimitForMerge)
+
+	If $PendingMerge >= $LimitForMerge Then
 		Local $NumCellEmpty = ScanDice()
 
 		FindPair()
 
-		cr($NumCellEmpty & " " & $Pair[0][3])
-
 		If $NumCellEmpty <= 2 Or $Pair[0][3] == 1 Then
-			For $i = 0 To 5
-				ConsoleWrite($DiceMatrix[$Pair[0][0]][$i] & " | ")
-			Next
+			;~ For $i = 0 To 5
+			;~ 	ConsoleWrite($DiceMatrix[$Pair[0][0]][$i] & " | ")
+			;~ Next
 
-			cr()
+			;~ cr()
 	
-			For $i = 0 To 5
-				ConsoleWrite($DiceMatrix[$Pair[0][1]][$i] & " | ")
-			Next
+			;~ For $i = 0 To 5
+			;~ 	ConsoleWrite($DiceMatrix[$Pair[0][1]][$i] & " | ")
+			;~ Next
 
-			cr()
+			;~ cr()
+
+			$PendingMerge = 0
+			$LimitForMerge = $LimitForMerge + 1
+
 
 			MergeDice($Pair[0][0], $Pair[0][1])
 		EndIf
+	Else
+		$PendingMerge = $PendingMerge + 3
 	EndIf
-EndFunc   ;==>autoPlayGame
+EndFunc
 
 Func UpgradeDice()
 	cr("Upgrate slot " & $curUpgradeDice)
@@ -98,7 +111,7 @@ Func GetColorFromMouse()
 	$mousePos = ScreenToClient($mousePos[0], $mousePos[1], $HWnD)
 
 	ConsoleWrite(GetPixelColor($mousePos[0], $mousePos[1], $HBitmap) & @CRLF)
-	
+
 	HidePointer(False)
 EndFunc
 

@@ -6,6 +6,9 @@ Func checkBattleScreen()
         If IsArray($NewDicePos) Then
             cr("Screen: Battle ")
 
+            $PendingMerge = 0
+			$LimitForMerge = 0
+
             ResetStartTime()
 
             $NewDicePos = ScreenToClient($NewDicePos[0], $NewDicePos[1], $HWnD)

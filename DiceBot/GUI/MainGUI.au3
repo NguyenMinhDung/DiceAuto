@@ -1,4 +1,5 @@
 Opt("GUIOnEventMode", 1)
+HotKeySet("{F4}", "WinExit")
 
 _GDIPlus_Startup()
 
