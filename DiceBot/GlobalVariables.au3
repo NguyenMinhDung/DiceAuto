@@ -1,5 +1,6 @@
 Global $Title = "NoxPlayer" ; Name of the Window
 Global $HWnD = WinGetHandle($Title) ;Handle for Bluestacks window
+Global $HBitmap
 
 ; AdbCommand
 Global $Nox_Path = "D:\Program Files\Nox\bin"
@@ -38,10 +39,34 @@ Global $IMG_QUICK_MATCH = "Images\quick_match.png"
 Global $IMG_NEW_DICE = "Images\new_dice.png"
 Global $IMG_DISCONNECT = "Images\disconnect.png"
 
+Const $EMPTY_CELL_COLOR = "DBDBDB"
+Const $SPACE_COLOR = "FFFFFF"
+Const $BLACK_COLOR = "000000"
+
+Global $LeftTopCellPosition = [1454, 558, 1, Null, 0, Null]
+Global $Pair = [[0, 0, 7, 10]]
+
+Global $DiceMatrix[15][12]
+;["Ice", 2, "4090F3"], _
+;["Posion", 2, "67D64F"], _
+;["Summoner", 1, "00A736"], _
+Global $DiceBattleTable = [ _
+    ["Blizzard", 2, "377DED"], _
+    ["Typhoon", 4, "187483", "0E284F", "0E2850"], _
+    ["MightyWind", 3, "72E5E5", "356BDF", "66CDDE", "142F5A"], _
+    ["Growth", 0, "3B2892"], _
+    ["Modified", 2, "FF6C66"] _
+]
+
+Global $PendingMerge = 0
+Global $LimitForMerge = 0
+
 #include <WindowsConstants.au3>
 #include <GUIConstantsEx.au3>
 #include <Array.au3>
 #include <ScreenCapture.au3>
+
+InitPositionDice()
 
 Func ResetStartTime()
     $StartTime = TimerInit()

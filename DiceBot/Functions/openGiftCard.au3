@@ -1,11 +1,11 @@
 Func OpenGiftCard()
 	Local $NoCard = False
 	While (Not $NoCard)
-		OpenCardStepByPos(404, 184, 100)
-		OpenCardStepByPos(286, 743, 100)
-		OpenCardStepByPos(268, 497, 100)
-		OpenCardStepByPos(273, 743, 100)
-		OpenCardStepByPos(273, 786, 100)
+		OpenCardStepByPos(272, 144, 100)
+		OpenCardStepByPos(189, 514, 100)
+		OpenCardStepByPos(182, 353, 100)
+		OpenCardStepByPos(190, 518, 100)
+		OpenCardStepByPos(195, 551, 100)
 
 		$NoCard = ClickOnImage("Images\emptycard.png", 1, $HWnD)
 
