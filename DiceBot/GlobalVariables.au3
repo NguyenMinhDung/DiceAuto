@@ -43,7 +43,7 @@ Const $EMPTY_CELL_COLOR = "DBDBDB"
 Const $SPACE_COLOR = "FFFFFF"
 Const $BLACK_COLOR = "000000"
 
-Global $LeftTopCellPosition = [1454, 558, 1, Null, 0, Null]
+Global $LeftTopCellPosition = [1579, 391, 1, Null, 0, Null]
 Global $Pair = [[0, 0, 7, 10]]
 
 Global $DiceMatrix[15][12]
@@ -51,7 +51,7 @@ Global $DiceMatrix[15][12]
 ;["Posion", 2, "67D64F"], _
 ;["Summoner", 1, "00A736"], _
 Global $DiceBattleTable = [ _
-    ["Blizzard", 2, "377DED"], _
+    ["Blizzard", 2, "377DED", "377DEE"], _
     ["Typhoon", 4, "187483", "0E284F", "0E2850"], _
     ["MightyWind", 3, "72E5E5", "356BDF", "66CDDE", "142F5A"], _
     ["Growth", 0, "3B2892"], _

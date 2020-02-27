@@ -30,7 +30,11 @@ Func AutoMerge()
 
 		FindPair()
 
+		cr("NumCellEmpty: " & $NumCellEmpty)
+
 		If $NumCellEmpty <= 2 Or $Pair[0][3] == 1 Then
+			cr("Merge Pair")
+
 			;~ For $i = 0 To 5
 			;~ 	ConsoleWrite($DiceMatrix[$Pair[0][0]][$i] & " | ")
 			;~ Next

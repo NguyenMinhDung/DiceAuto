@@ -8,8 +8,8 @@ Local $HexColorLeftBot
 Func InitPositionDice()
     For $x = 0 To 2
         For $y = 0 To 4
-            $DiceMatrix[5 * $x + $y][0] = $LeftTopCellPosition[0] + 64 * $y
-            $DiceMatrix[5 * $x + $y][1] = $LeftTopCellPosition[1] + 62 * $x
+            $DiceMatrix[5 * $x + $y][0] = $LeftTopCellPosition[0] + 44 * $y
+            $DiceMatrix[5 * $x + $y][1] = $LeftTopCellPosition[1] + 42 * $x
             $DiceMatrix[5 * $x + $y][2] = $LeftTopCellPosition[2]
             $DiceMatrix[5 * $x + $y][3] = $LeftTopCellPosition[3]
             $DiceMatrix[5 * $x + $y][4] = $LeftTopCellPosition[4]
@@ -126,11 +126,11 @@ Func UpdateDot($Cell)
     $Pos = ScreenToClient($Pos[0], $Pos[1], $HWnD)
 
     $HexColorCenter = GetPixelColor($Pos[0], $Pos[1], $HBitmap)
-    $HexColorLeft = GetPixelColor($Pos[0] - 12, $Pos[1], $HBitmap)
-    $HexColorRight = GetPixelColor($Pos[0] + 12, $Pos[1], $HBitmap)
-    $HexColorLeftTop = GetPixelColor($Pos[0] - 12, $Pos[1] - 12, $HBitmap)
-    $HexColorRightTop = GetPixelColor($Pos[0] + 12, $Pos[1] - 12, $HBitmap)
-    $HexColorLeftBot = GetPixelColor($Pos[0] - 12, $Pos[1] + 12, $HBitmap)
+    $HexColorLeft = GetPixelColor($Pos[0] - 8, $Pos[1], $HBitmap)
+    $HexColorRight = GetPixelColor($Pos[0] + 8, $Pos[1], $HBitmap)
+    $HexColorLeftTop = GetPixelColor($Pos[0] - 8, $Pos[1] - 8, $HBitmap)
+    $HexColorRightTop = GetPixelColor($Pos[0] + 8, $Pos[1] - 8, $HBitmap)
+    $HexColorLeftBot = GetPixelColor($Pos[0] - 8, $Pos[1] + 8, $HBitmap)
 
     $DiceMatrix[$Cell][6] = $HexColorCenter
     $DiceMatrix[$Cell][7] = $HexColorLeft
