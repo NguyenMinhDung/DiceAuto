@@ -24,14 +24,18 @@ Func waitForAds($timeout)
 
 			Sleep(200)
 
-			Local $result = ClickOnImage("Images\resume.png", 5, $HWnD)
+			If $count >= 4 Then
+				cr("Close ads")
 
-			If $result Then
-				$count = $count + 1
-			EndIf
-
-			If $count >= 5 Then
 				ClickOnImage("Images\close.png", 5, $HWnD)
+			Else
+				cr("Resume ads " & $count)
+
+				Local $result = ClickOnImage("Images\resume.png", 5, $HWnD)
+
+				If $result Then
+					$count = $count + 1
+				EndIf
 			EndIf
 
 			cr("Checking ads is watched...")
