@@ -24,7 +24,7 @@ Func waitForAds($timeout)
 
 			Sleep(200)
 
-			If $count >= 4 Then
+			If $count >= 3 Then
 				cr("Close ads")
 
 				ClickOnImage("Images\close.png", 5, $HWnD)
